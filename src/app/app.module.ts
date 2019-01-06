@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
 
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+``
 import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -13,6 +15,7 @@ import { TeamDetailPage } from '../pages/team-detail/team-detail';
 import { TournamentsPage } from '../pages/tournaments/tournaments';
 import { TeamHomePage } from '../pages/team-home/team-home';
 import { StandingsPage } from '../pages/standings/standings';
+import { EliteApi } from '../providers/elite-api/elite-api';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { StandingsPage } from '../pages/standings/standings';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +47,8 @@ import { StandingsPage } from '../pages/standings/standings';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    EliteApi
   ]
 })
 export class AppModule {}
