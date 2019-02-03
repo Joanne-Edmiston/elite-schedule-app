@@ -1,19 +1,30 @@
 <ion-header>
-    <ion-navbar color="primary">
-      <button menuToggle ion-button icon-only>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Elite Schedule</ion-title>
-    </ion-navbar>
-    <ion-toolbar color="secondary">
-      <ion-title>My Teams</ion-title>
-    </ion-toolbar>
+  <ion-navbar color="primary">
+    <button menuToggle ion-button icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Elite Schedule</ion-title>
+  </ion-navbar>
+  <ion-toolbar color="secondary">
+    <ion-title>My Teams</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <!--<p>You are not currently following any teams.</p>
+  <p>First select a tournament, then you can follow teams from their team page.</p>-->
 
-  <p>You are not currently following any teams.</p>
-  <p>First select a tournament, then you can follow teams from their team page.</p>
-  <button ion-button full (click)='goToTournaments()'>find a tournament</button>
-
+  <ion-list>
+    <ion-list-header>Followed Teams</ion-list-header>
+    <button
+      ion-item
+      *ngFor="let item of favourites"
+      (click)="favouriteTapped($event, item)"
+    >
+      <ion-icon name="star"></ion-icon>
+      {{ item.team.name }}
+      <p>{{ item.tournamentName }}</p>
+    </button>
+  </ion-list>
+  <button ion-button full (click)="goToTournaments()">find a tournament</button>
 </ion-content>

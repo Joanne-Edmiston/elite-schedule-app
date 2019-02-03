@@ -5,29 +5,31 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class EliteApi {
-
   private baseUrl = 'https://elite-schedule-app-i2-c2ad1.firebaseio.com';
   private currentTourney: any = {};
 
-  constructor(public http: Http) {
-  }
+  constructor(public http: Http) {}
 
   getTournaments() {
     return new Promise(resolve => {
-      this.http.get(`${this.baseUrl}/tournaments.json`)
+      this.http
+        .get(`${this.baseUrl}/tournaments.json`)
         .subscribe(res => resolve(res.json()));
-    })
+    });
   }
 
-  getTournamentData(tourneyId) : Observable<any> {
-    return this.http.get(`${this.baseUrl}/tournaments-data/${tourneyId}.json`)
+  getTournamentData(tourneyId): Observable<any> {
+    //console.log('** getTournamentData,  tourneyID: ' + tourneyId);
+
+    return this.http
+      .get(`${this.baseUrl}/tournaments-data/${tourneyId}.json`)
       .map(response => {
         this.currentTourney = response.json();
         return this.currentTourney;
-      })
+      });
   }
 
-  getCurrentTourney(){
+  getCurrentTourney() {
     return this.currentTourney;
   }
 }
