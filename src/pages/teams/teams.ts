@@ -39,7 +39,7 @@ export class TeamsPage {
 
         this.teams = this.allTeamDivisions;
 
-        console.log('division teams', this.teams);
+        //console.log('division teams', this.teams);
 
         loader.dismiss();
       });
