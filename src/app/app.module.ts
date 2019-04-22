@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-``
+``;
 import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,6 +17,7 @@ import { TournamentsPage } from '../pages/tournaments/tournaments';
 import { TeamHomePage } from '../pages/team-home/team-home';
 import { StandingsPage } from '../pages/standings/standings';
 import { EliteApi } from '../providers/elite-api/elite-api';
+import { UserSettings } from '../providers/user-settings/user-settings';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { EliteApi } from '../providers/elite-api/elite-api';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,8 +50,9 @@ import { EliteApi } from '../providers/elite-api/elite-api';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EliteApi
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    EliteApi,
+    UserSettings
   ]
 })
 export class AppModule {}
