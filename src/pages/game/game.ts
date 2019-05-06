@@ -4,6 +4,8 @@ import { EliteApi } from '../../providers/elite-api/elite-api';
 import { TeamHomePage } from '../team-home/team-home';
 import { MapPage } from '../map/map';
 
+declare var window: any;
+
 @Component({
   selector: 'page-game',
   templateUrl: 'game.html'
@@ -28,7 +30,11 @@ export class GamePage {
     this.navCtrl.push(TeamHomePage, team);
   }
 
-  goToDirections() {}
+  goToDirections() {
+    let tourneyData = this.eliteApi.getCurrentTourney();
+    let location = tourneyData.locations[this.game.locationId];
+    window.location = `geo:${location.latitude},${location.longitude};u=35`;
+  }
 
   goToMap() {
     this.navCtrl.push(MapPage, this.game);
